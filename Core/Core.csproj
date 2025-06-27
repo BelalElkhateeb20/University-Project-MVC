@@ -11,4 +11,29 @@
     <ProjectReference Include="..\Service\Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Department\Commands\Handler\" />
+    <Folder Include="Features\Department\Commands\Model\" />
+    <Folder Include="Features\Department\Commands\Validator\" />
+    <Folder Include="Features\Department\DTOs\" />
+    <Folder Include="Features\Department\Queries\" />
+    <Folder Include="Features\Instractor\Commands\Handler\" />
+    <Folder Include="Features\Instractor\Commands\Model\" />
+    <Folder Include="Features\Instractor\Commands\Validator\" />
+    <Folder Include="Features\Instractor\DTOs\" />
+    <Folder Include="Features\Instractor\Queries\" />
+    <Folder Include="Features\Student\Commands\Validator\" />
+    <Folder Include="Features\Student\DTOs\" />
+    <Folder Include="Features\Student\Queries\" />
+    <Folder Include="Features\User\Commands\Validator\" />
+    <Folder Include="Features\User\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+    <PackageReference Include="MediatR" Version="12.5.0" />
+  </ItemGroup>
+
 </Project>

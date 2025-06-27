@@ -21,8 +21,6 @@ namespace Domain.Models.Entities
         public int UserId { get; set; }
         public string? ENameAr { get; set; }
         public string? ENameEn { get; set; }
-
-
         public string? Address { get; set; }
         public string? Email { get; set; }
         public string? Position { get; set; }

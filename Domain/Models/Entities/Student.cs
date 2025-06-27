@@ -24,6 +24,7 @@ namespace Domain.Models.Entities
         public string? NameAR { get; set; }
         [StringLength(500)]
         public string? Address { get; set; }
+        public string Image { get; set; }
         [StringLength(500)]
         public string? Phone { get; set; }
         [ForeignKey("DepartmentID")]
