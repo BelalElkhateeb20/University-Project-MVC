@@ -1,0 +1,29 @@
+﻿@using Domain.Models.Entities
+@model List<Department>
+@{
+    ViewData["Title"] = "GetAllDepartments";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr class="table-dark">
+            <th scope="row">ID</th>
+            <th>DepartmentNameEN</th>
+            <th>DepartmentNameAR</th>
+            <th>Is manager</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DID</td>
+                <td>@item.DNameEN</td>
+                <td>@item.DNameAR</td>
+                <td>@item.InsManager</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<button type="button" class="btn btn-dark">Add New Department <i class="bi bi-plus-circle"></i></button>

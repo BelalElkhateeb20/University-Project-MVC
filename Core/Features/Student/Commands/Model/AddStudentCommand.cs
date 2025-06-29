@@ -1,7 +1,7 @@
 ﻿using MediatR;
 
 
-namespace Core.Features.Student.Commands.Model
+namespace Core.Features.Students.Commands.Model
 {
     public class AddStudentCommand:IRequest<string>
     {

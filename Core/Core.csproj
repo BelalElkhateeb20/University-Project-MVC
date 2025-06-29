@@ -12,11 +12,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Department\Commands\Handler\" />
-    <Folder Include="Features\Department\Commands\Model\" />
-    <Folder Include="Features\Department\Commands\Validator\" />
-    <Folder Include="Features\Department\DTOs\" />
-    <Folder Include="Features\Department\Queries\" />
+    <Folder Include="Features\Account - Copy\" />
+    <Folder Include="Features\Account\Commands\Validator\" />
+    <Folder Include="Features\Account\DTOs\" />
+    <Folder Include="Features\Account\Queries\" />
+    <Folder Include="Features\Departments\Commands\Handler\" />
+    <Folder Include="Features\Departments\Commands\Model\" />
+    <Folder Include="Features\Departments\Commands\Validator\" />
+    <Folder Include="Features\Departments\DTOs\" />
+    <Folder Include="Features\Departments\Queries\Validator\" />
     <Folder Include="Features\Instractor\Commands\Handler\" />
     <Folder Include="Features\Instractor\Commands\Model\" />
     <Folder Include="Features\Instractor\Commands\Validator\" />
@@ -24,9 +28,9 @@
     <Folder Include="Features\Instractor\Queries\" />
     <Folder Include="Features\Student\Commands\Validator\" />
     <Folder Include="Features\Student\DTOs\" />
-    <Folder Include="Features\Student\Queries\" />
-    <Folder Include="Features\User\Commands\Validator\" />
-    <Folder Include="Features\User\Queries\" />
+    <Folder Include="Features\Student\Queries\Validator\" />
+    <Folder Include="Features\Users\Commands\Validator\" />
+    <Folder Include="Features\Users\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +38,7 @@
     <PackageReference Include="FluentValidation" Version="12.0.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
     <PackageReference Include="MediatR" Version="12.5.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization.Abstractions" Version="9.0.6" />
   </ItemGroup>
 
 </Project>

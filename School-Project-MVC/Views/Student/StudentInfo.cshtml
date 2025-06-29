@@ -1,0 +1,37 @@
+﻿@using Domain.Models.ModelView
+@model StudentInfoMV
+@{
+    ViewData["Title"] = "Student.Info";
+}
+<section>
+    <div class="card shadow rounded border-0 mt-5" style="max-width: auto;margin-right:100px;margin-left:100px  ">
+        <div class="row g-0 align-items-center">
+            <div class="col-md-9 p-4">
+                <h6 class="text-muted text-end">@Model.student.Code</h6>
+                <h4 class="text-primary fw-bold text-end">@Model.student.NameAR</h4>
+                <p class="text-end mb-1">Department</p>
+                <p class="text-end mb-3"> المستوى : @Model.student.Level </p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center gap-2">
+
+                        <button type="button" class="btn btn-warning btn-sm" onclick="window.open('https://www.google.co.uk/', '_blank')">
+                            كيفية الاستخدام؟
+                        </button>
+
+                        <span class="text-muted small">Initial Password: <b>123Jhon</b></span>
+                    </div>
+                    <span class="text-muted small">
+                        <button href="https://www.google.co.uk/" type="button" class="btn btn-dark">@Model.student.Email</button>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <img src="~/images/p.png.jpg" class="img-fluid rounded-circle m-3" style="width: 200px; height: 200px; object-fit: cover;" />
+            </div>
+        </div>
+    </div>
+</section>
+<div>
+    <section> </section>
+</div> 

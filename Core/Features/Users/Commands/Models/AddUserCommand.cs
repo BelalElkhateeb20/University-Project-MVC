@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Core.Features.User.Commands.Models
+namespace Core.Features.Users.Commands.Models
 {
     public class AddUserCommand:IRequest<string>
     {

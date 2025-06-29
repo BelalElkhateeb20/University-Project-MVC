@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.Student.Commands.Handler
+namespace Core.Features.Students.Commands.Handler
 {
     public class StudentCommandHandler
     {

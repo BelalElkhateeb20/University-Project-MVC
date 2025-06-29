@@ -18,6 +18,7 @@ namespace Domain.Models.Identity
         public Instructor Instructor { get; set; }
         public bool? Supervisor { get; set; }
         public string FullName { get; set; }
+        public string RoleType { get; set; }
         public string? Address { get; set; }
         public string? Country { get; set; }
         [EncryptColumn]

@@ -11,6 +11,7 @@ namespace Domain.Models.Entities
         {
             StudentSubjects = new HashSet<StudentSubjects>();
             ExamResults = new HashSet<StudentExamResults>();
+            StudentSections = new HashSet<Student_Section>();
         }
 
 
@@ -24,11 +25,14 @@ namespace Domain.Models.Entities
         public string? NameAR { get; set; }
         [StringLength(500)]
         public string? Address { get; set; }
+        public string Email { get; set; }
+        public string Code { get; set; }
+        public string Level { get; set; }
         public string Image { get; set; }
         [StringLength(500)]
         public string? Phone { get; set; }
         [ForeignKey("DepartmentID")]
-        public int? DepartmentID { get; set; } //can be Null
+        public int DepartmentID { get; set; } //can be Null
         public virtual Department? Department { get; set; }
 
         [InverseProperty("Student")]
@@ -40,5 +44,6 @@ namespace Domain.Models.Entities
         public User User { get; set; }
         [InverseProperty("Student")]
         public ICollection<StudentExamResults> ExamResults { get; set; }
+        public ICollection<Student_Section> StudentSections { get; set; }
     }
 }

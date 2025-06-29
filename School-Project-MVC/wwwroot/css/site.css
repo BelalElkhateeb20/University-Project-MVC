@@ -19,6 +19,7 @@ html {
 
 body {
     margin-bottom: 60px;
+    padding-top: 70px;
 }
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
@@ -51,7 +52,6 @@ body {
         color: white;
         margin-bottom: 10px;
     }
-
         .sidebar .nav-link:hover {
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 5px;
@@ -67,3 +67,4 @@ body {
     .main-content.shifted {
         margin-left: 250px;
     }
+

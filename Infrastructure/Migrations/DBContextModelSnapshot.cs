@@ -135,6 +135,53 @@ namespace Infrastructure.Migrations
                     b.ToTable("instructors");
                 });
 
+            modelBuilder.Entity("Domain.Models.Entities.Section", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AcademicYear")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Term")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Section");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AcademicYear = "2024/2025",
+                            Name = "Group 1",
+                            Term = "First"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AcademicYear = "2024/2025",
+                            Name = "Group 2",
+                            Term = "First"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AcademicYear = "2024/2025",
+                            Name = "Group 3",
+                            Term = "First"
+                        });
+                });
+
             modelBuilder.Entity("Domain.Models.Entities.Student", b =>
                 {
                     b.Property<int>("StudID")
@@ -147,8 +194,24 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int?>("DepartmentID")
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DepartmentID")
                         .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Level")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameAR")
                         .HasMaxLength(200)
@@ -173,6 +236,78 @@ namespace Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("students");
+
+                    b.HasData(
+                        new
+                        {
+                            StudID = 1,
+                            Address = "New York",
+                            Code = "CH1",
+                            DepartmentID = 1,
+                            Email = "john.smith@example.com",
+                            Image = "John.png",
+                            Level = "الاولى",
+                            NameAR = "جون سميث",
+                            NameEN = "John Smith",
+                            Phone = "1234567890",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            StudID = 2,
+                            Address = "Cairo",
+                            Code = "CH2",
+                            DepartmentID = 1,
+                            Email = "ali.ahmed@example.com",
+                            Image = "ali.png",
+                            Level = "الاولى",
+                            NameAR = "علي أحمد",
+                            NameEN = "Ali Ahmed",
+                            Phone = "9876543210",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            StudID = 3,
+                            Address = "Alexandria",
+                            Code = "CH3",
+                            DepartmentID = 1,
+                            Email = "sara.kamal@example.com",
+                            Image = "sara.png",
+                            Level = "الاولى",
+                            NameAR = "سارة كمال",
+                            NameEN = "Sara Kamal",
+                            Phone = "01112345678",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            StudID = 4,
+                            Address = "Giza",
+                            Code = "CH4",
+                            DepartmentID = 1,
+                            Email = "fatma.adel@example.com",
+                            Image = "fatma.png",
+                            Level = "الاولى",
+                            NameAR = "فاطمة عادل",
+                            NameEN = "Fatma Adel",
+                            Phone = "01234567890",
+                            UserId = 4
+                        },
+                        new
+                        {
+                            StudID = 5,
+                            Address = "Tanta",
+                            Code = "CH5",
+                            DepartmentID = 1,
+                            Email = "mohamed.tarek@example.com",
+                            Image = "mohamed.png",
+                            Level = "الاولى",
+                            NameAR = "محمد طارق",
+                            NameEN = "Mohamed Tarek",
+                            Phone = "01098765432",
+                            UserId = 5
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.Entities.StudentExamResults", b =>
@@ -230,6 +365,21 @@ namespace Infrastructure.Migrations
                     b.ToTable("studentSubjects", "StuSub");
                 });
 
+            modelBuilder.Entity("Domain.Models.Entities.Student_Section", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SectionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("StudentId", "SectionId");
+
+                    b.HasIndex("SectionId");
+
+                    b.ToTable("Student_Section", "Stud_sec");
+                });
+
             modelBuilder.Entity("Domain.Models.Entities.Subject", b =>
                 {
                     b.Property<int>("SubID")
@@ -252,6 +402,212 @@ namespace Infrastructure.Migrations
                     b.HasKey("SubID");
 
                     b.ToTable("subjects", "Sub");
+
+                    b.HasData(
+                        new
+                        {
+                            SubID = 1,
+                            Period = 3,
+                            SubjectNameAR = "رياضيات هندسية",
+                            SubjectNameEN = "Engineering Mathematics"
+                        },
+                        new
+                        {
+                            SubID = 2,
+                            Period = 3,
+                            SubjectNameAR = "فيزياء للمهندسين",
+                            SubjectNameEN = "Physics for Engineers"
+                        },
+                        new
+                        {
+                            SubID = 3,
+                            Period = 3,
+                            SubjectNameAR = "الديناميكا الحرارية",
+                            SubjectNameEN = "Thermodynamics"
+                        },
+                        new
+                        {
+                            SubID = 4,
+                            Period = 3,
+                            SubjectNameAR = "ميكانيكا الموائع",
+                            SubjectNameEN = "Fluid Mechanics"
+                        },
+                        new
+                        {
+                            SubID = 5,
+                            Period = 2,
+                            SubjectNameAR = "الرسم الهندسي",
+                            SubjectNameEN = "Engineering Drawing"
+                        },
+                        new
+                        {
+                            SubID = 6,
+                            Period = 3,
+                            SubjectNameAR = "الاستاتيكا",
+                            SubjectNameEN = "Statics"
+                        },
+                        new
+                        {
+                            SubID = 7,
+                            Period = 3,
+                            SubjectNameAR = "الديناميكا",
+                            SubjectNameEN = "Dynamics"
+                        },
+                        new
+                        {
+                            SubID = 8,
+                            Period = 2,
+                            SubjectNameAR = "علم المواد",
+                            SubjectNameEN = "Materials Science"
+                        },
+                        new
+                        {
+                            SubID = 9,
+                            Period = 3,
+                            SubjectNameAR = "الدوائر الكهربية",
+                            SubjectNameEN = "Electrical Circuits"
+                        },
+                        new
+                        {
+                            SubID = 10,
+                            Period = 3,
+                            SubjectNameAR = "برمجة الحاسب",
+                            SubjectNameEN = "Computer Programming"
+                        },
+                        new
+                        {
+                            SubID = 11,
+                            Period = 1,
+                            SubjectNameAR = "أخلاقيات الهندسة",
+                            SubjectNameEN = "Engineering Ethics"
+                        },
+                        new
+                        {
+                            SubID = 12,
+                            Period = 2,
+                            SubjectNameAR = "الاقتصاد الهندسي",
+                            SubjectNameEN = "Engineering Economy"
+                        },
+                        new
+                        {
+                            SubID = 13,
+                            Period = 3,
+                            SubjectNameAR = "نظم التحكم",
+                            SubjectNameEN = "Control Systems"
+                        },
+                        new
+                        {
+                            SubID = 14,
+                            Period = 3,
+                            SubjectNameAR = "المعالجات الدقيقة",
+                            SubjectNameEN = "Microprocessors"
+                        },
+                        new
+                        {
+                            SubID = 15,
+                            Period = 3,
+                            SubjectNameAR = "المنطق الرقمي",
+                            SubjectNameEN = "Digital Logic"
+                        },
+                        new
+                        {
+                            SubID = 16,
+                            Period = 3,
+                            SubjectNameAR = "تحليل الإنشاءات",
+                            SubjectNameEN = "Structural Analysis"
+                        },
+                        new
+                        {
+                            SubID = 17,
+                            Period = 3,
+                            SubjectNameAR = "الهيدروليكا",
+                            SubjectNameEN = "Hydraulics"
+                        },
+                        new
+                        {
+                            SubID = 18,
+                            Period = 3,
+                            SubjectNameAR = "تصميم الماكينات",
+                            SubjectNameEN = "Machine Design"
+                        },
+                        new
+                        {
+                            SubID = 19,
+                            Period = 2,
+                            SubjectNameAR = "تكنولوجيا اللحام",
+                            SubjectNameEN = "Welding Technology"
+                        },
+                        new
+                        {
+                            SubID = 20,
+                            Period = 2,
+                            SubjectNameAR = "الهندسة البيئية",
+                            SubjectNameEN = "Environmental Engineering"
+                        });
+                });
+
+            modelBuilder.Entity("Domain.Models.Entities.Subject_Section", b =>
+                {
+                    b.Property<int>("SectionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SubjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Day")
+                        .HasColumnType("int");
+
+                    b.Property<TimeSpan>("EndTime")
+                        .HasColumnType("time");
+
+                    b.Property<string>("Instructor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Room")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("StartTime")
+                        .HasColumnType("time");
+
+                    b.HasKey("SectionId", "SubjectId");
+
+                    b.HasIndex("SubjectId");
+
+                    b.ToTable("Subject_Section", "Sub_sec");
+
+                    b.HasData(
+                        new
+                        {
+                            SectionId = 1,
+                            SubjectId = 1,
+                            Day = 0,
+                            EndTime = new TimeSpan(0, 10, 30, 0, 0),
+                            Instructor = "Eng. Ahmed Izzat",
+                            Room = "Lap107",
+                            StartTime = new TimeSpan(0, 8, 30, 0, 0)
+                        },
+                        new
+                        {
+                            SectionId = 2,
+                            SubjectId = 2,
+                            Day = 1,
+                            EndTime = new TimeSpan(0, 12, 30, 0, 0),
+                            Instructor = "Eng. Sara Tarek",
+                            Room = "Section405",
+                            StartTime = new TimeSpan(0, 10, 30, 0, 0)
+                        },
+                        new
+                        {
+                            SectionId = 2,
+                            SubjectId = 3,
+                            Day = 2,
+                            EndTime = new TimeSpan(0, 10, 30, 0, 0),
+                            Instructor = "Eng. Khaled Ali",
+                            Room = "111",
+                            StartTime = new TimeSpan(0, 8, 30, 0, 0)
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.Identity.Role", b =>
@@ -343,6 +699,10 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("RoleType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -367,6 +727,118 @@ namespace Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            Address = "123 Main St",
+                            Code = "Code1",
+                            ConcurrencyStamp = "CON_STAMP_USER1",
+                            Country = "Egypt",
+                            Email = "john.smith@example.com",
+                            EmailConfirmed = false,
+                            FullName = "John Smith",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "JOHN.SMITH@EXAMPLE.COM",
+                            NormalizedUserName = "JOHN.SMITH",
+                            PasswordHash = "b4Xi+yJjC7uAwW2h7JqHgEPvQNkyukUcCKQJVJV7Hcw=",
+                            PhoneNumberConfirmed = false,
+                            RoleType = "Student",
+                            SecurityStamp = "SEC_STAMP_USER1",
+                            Supervisor = false,
+                            TwoFactorEnabled = false,
+                            UserName = "john.smith"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccessFailedCount = 0,
+                            Address = "456 Oak Ave",
+                            Code = "Code2",
+                            ConcurrencyStamp = "CON_STAMP_USER2",
+                            Country = "Egypt",
+                            Email = "ali.ahmed@example.com",
+                            EmailConfirmed = false,
+                            FullName = "Ali Ahmed",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ALI.AHMED@EXAMPLE.COM",
+                            NormalizedUserName = "ALI.AHMED",
+                            PasswordHash = "j/L0kmTWDDI+z8EtdWsfqSJK24rZzsNXh7XcClqdNJY=",
+                            PhoneNumberConfirmed = false,
+                            RoleType = "Student",
+                            SecurityStamp = "SEC_STAMP_USER2",
+                            Supervisor = false,
+                            TwoFactorEnabled = false,
+                            UserName = "ali.ahmed"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccessFailedCount = 0,
+                            Address = "789 Pine Ln",
+                            Code = "Code3",
+                            ConcurrencyStamp = "CON_STAMP_USER3",
+                            Country = "Egypt",
+                            Email = "sara.kamal@example.com",
+                            EmailConfirmed = false,
+                            FullName = "Sara Kamal",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "SARA.KAMAL@EXAMPLE.COM",
+                            NormalizedUserName = "SARA.KAMAL",
+                            PasswordHash = "mzHt/LwX97iHnoLsyO9nUosJ1I7F/54buWUqL0V646M=",
+                            PhoneNumberConfirmed = false,
+                            RoleType = "Student",
+                            SecurityStamp = "SEC_STAMP_USER3",
+                            Supervisor = false,
+                            TwoFactorEnabled = false,
+                            UserName = "sara.kamal"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AccessFailedCount = 0,
+                            Address = "101 Elm St",
+                            Code = "Code4",
+                            ConcurrencyStamp = "CON_STAMP_USER4",
+                            Country = "Egypt",
+                            Email = "fatma.adel@example.com",
+                            EmailConfirmed = false,
+                            FullName = "Fatma Adel",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "FATMA.ADEL@EXAMPLE.COM",
+                            NormalizedUserName = "FATMA.ADEL",
+                            PasswordHash = "Mw/DDLpeE+CgfHyyjy5O1lEsx5+UIx0NOw02ZqK2HjY=",
+                            PhoneNumberConfirmed = false,
+                            RoleType = "Student",
+                            SecurityStamp = "SEC_STAMP_USER4",
+                            Supervisor = false,
+                            TwoFactorEnabled = false,
+                            UserName = "fatma.adel"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            AccessFailedCount = 0,
+                            Address = "202 Birch Ct",
+                            Code = "Code5",
+                            ConcurrencyStamp = "CON_STAMP_USER5",
+                            Country = "Egypt",
+                            Email = "mohamed.tarek@example.com",
+                            EmailConfirmed = false,
+                            FullName = "Mohamed Tarek",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MOHAMED.TAREK@EXAMPLE.COM",
+                            NormalizedUserName = "MOHAMED.TAREK",
+                            PasswordHash = "fFvW7rprIKAbYotMRpBQuTG1ix/fX4pnRUjycbWed64=",
+                            PhoneNumberConfirmed = false,
+                            RoleType = "Student",
+                            SecurityStamp = "SEC_STAMP_USER5",
+                            Supervisor = false,
+                            TwoFactorEnabled = false,
+                            UserName = "mohamed.tarek"
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.Identity.UserRefreshToken", b =>
@@ -587,7 +1059,9 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Models.Entities.Department", "Department")
                         .WithMany("Students")
-                        .HasForeignKey("DepartmentID");
+                        .HasForeignKey("DepartmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Domain.Models.Identity.User", "User")
                         .WithOne("Student")
@@ -634,6 +1108,44 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Student");
+
+                    b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Domain.Models.Entities.Student_Section", b =>
+                {
+                    b.HasOne("Domain.Models.Entities.Section", "Section")
+                        .WithMany("StudentSections")
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.Entities.Student", "Student")
+                        .WithMany("StudentSections")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Section");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Domain.Models.Entities.Subject_Section", b =>
+                {
+                    b.HasOne("Domain.Models.Entities.Section", "Section")
+                        .WithMany("SubjectSections")
+                        .HasForeignKey("SectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.Entities.Subject", "Subject")
+                        .WithMany("SectionSubjects")
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Section");
 
                     b.Navigation("Subject");
                 });
@@ -718,9 +1230,18 @@ namespace Infrastructure.Migrations
                     b.Navigation("Instructors");
                 });
 
+            modelBuilder.Entity("Domain.Models.Entities.Section", b =>
+                {
+                    b.Navigation("StudentSections");
+
+                    b.Navigation("SubjectSections");
+                });
+
             modelBuilder.Entity("Domain.Models.Entities.Student", b =>
                 {
                     b.Navigation("ExamResults");
+
+                    b.Navigation("StudentSections");
 
                     b.Navigation("StudentSubjects");
                 });
@@ -732,6 +1253,8 @@ namespace Infrastructure.Migrations
                     b.Navigation("ExamResults");
 
                     b.Navigation("Ins_Subjects");
+
+                    b.Navigation("SectionSubjects");
 
                     b.Navigation("StudentsSubjects");
                 });

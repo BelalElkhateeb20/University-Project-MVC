@@ -18,6 +18,8 @@ namespace Domain.Models.Entities
             DepartmetsSubjects = new HashSet<DepartmentSubject>();
             Ins_Subjects = new HashSet<Ins_Subject>();
             ExamResults = new HashSet<StudentExamResults>();
+            SectionSubjects = new HashSet<Subject_Section>();
+
         }
         [Key]
         public int SubID { get; set; }
@@ -34,5 +36,6 @@ namespace Domain.Models.Entities
         public virtual ICollection<Ins_Subject> Ins_Subjects { get; set; }
         [InverseProperty("Subject")]
         public ICollection<StudentExamResults> ExamResults { get; set; }
+        public ICollection<Subject_Section> SectionSubjects { get; set; }
     }
 }

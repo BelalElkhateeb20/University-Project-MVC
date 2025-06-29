@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Features.User.Commands.Handler
+namespace Infrastructure.Repositories
 {
-    internal class UserCommandHandler
+    public class DepartmentRepo
     {
     }
 }

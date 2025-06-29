@@ -1,5 +1,6 @@
 ﻿using Domain.Models.Entities;
 using Domain.Models.Identity;
+using Infrastructure.DataSeedingConfig;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,11 @@ namespace Infrastructure.Context
 
             #region Database Seeding
             //modelBuilder.ApplyConfiguration(new DepartmentSeedingConfig());
-            //modelBuilder.ApplyConfiguration(new StudentSeedingConfig());
-            //modelBuilder.ApplyConfiguration(new InstractorSeedingConfig());
-            //modelBuilder.ApplyConfiguration(new SubjectSeedingConfig());
-            //modelBuilder.ApplyConfiguration(new UserSeedingConfig());
+            modelBuilder.ApplyConfiguration(new StudentSeedingConfig());
+            modelBuilder.ApplyConfiguration(new SectionSeedingConfig());
+            modelBuilder.ApplyConfiguration(new SubjectSeedingConfig());
+            modelBuilder.ApplyConfiguration(new Subject_SectionSeedingConfig());
+            modelBuilder.ApplyConfiguration(new UseSeedingConfig());
             #endregion
 
             #region Relationships
@@ -54,6 +56,33 @@ namespace Infrastructure.Context
                 .HasForeignKey<Instructor>(s => s.UserId);
 
 
+
+            modelBuilder.Entity<Student_Section>()
+                .HasKey(ss => new { ss.StudentId, ss.SectionId });
+
+            modelBuilder.Entity<Student_Section>()
+                .HasOne(ss => ss.Student)
+                .WithMany(s => s.StudentSections)
+                .HasForeignKey(ss => ss.StudentId);
+
+            modelBuilder.Entity<Student_Section>()
+                .HasOne(ss => ss.Section)
+                .WithMany(s => s.StudentSections)
+                .HasForeignKey(ss => ss.SectionId);
+
+            modelBuilder.Entity<Subject_Section>()
+                .HasKey(ss => new { ss.SectionId, ss.SubjectId });
+
+            modelBuilder.Entity<Subject_Section>()
+                .HasOne(ss => ss.Section)
+                .WithMany(s => s.SubjectSections)
+                .HasForeignKey(ss => ss.SectionId);
+
+            modelBuilder.Entity<Subject_Section>()
+                .HasOne(ss => ss.Subject)
+                .WithMany(s => s.SectionSubjects)
+                .HasForeignKey(ss => ss.SubjectId);
+
             #endregion
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -67,5 +96,8 @@ namespace Infrastructure.Context
         public DbSet<StudentSubjects> studentSubjects { get; set; }
         public DbSet<DepartmentSubject> departmentSubjects { get; set; }
         public DbSet<StudentExamResults> examResults { get; set; }
+        public DbSet<Subject_Section> subject_Sections  { get; set; }
+        public DbSet<Student_Section> student_Sections { get; set; }
+        public DbSet<Section> Sections { get; set; }
     }
 }

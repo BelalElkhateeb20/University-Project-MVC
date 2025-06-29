@@ -3,9 +3,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>School_Project_MVC</title>
+    <title>School_Project_MVC | @ViewData["Title"] </title>
     <script type="importmap"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> 
 
@@ -15,6 +18,7 @@
 </head>
 <body>
     <!-- 🔵 Navbar -->
+    <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <!-- ☰ Sidebar Toggle Button -->
@@ -26,21 +30,19 @@
             <!-- Navbar Content -->
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                    <li><a class="nav-link active" href="#"> 📚Available courses</a> </li>
-                    <li><a class="nav-link active" href="#">📚Schedules</a> </li>
+                        <li class="nav-item"><a class="nav-link active"  asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a class="nav-link active" asp-controller="Course"> 📚Available courses</a> </li>
+                    <li><a class="nav-link active" asp-controller="Schedules">📚Schedules</a> </li>
                 </ul>
 
                 <!-- Account Dropdown -->
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown">
                             👤 Account
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item">Profile</a></li>
                             <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
                         </ul>
                     </li>
@@ -55,10 +57,11 @@
         <ul class="nav flex-column">
             <li class="nav-item"><a class="nav-link" href="#">🏠 Course</a></li>
             <li class="nav-item"><a class="nav-link" href="#">🎓 Students</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">🏛️ Departments</a></li>
+                <li class="nav-item"><a class="nav-link" asp-action="GetAllDepartments" asp-controller="Department">🏛️ Departments</a></li>
             <li class="nav-item"><a class="nav-link" href="#">📚 Subjects</a></li>
         </ul>
     </div>
+    </header>
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById("sidebar");
